@@ -1,0 +1,25 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./php/Dockerfile
+    container_name: api-app-php
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: api-app-nginx
+    volumes:
+      - ./src:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
