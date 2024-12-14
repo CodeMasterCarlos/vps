@@ -1,0 +1,25 @@
+name: VPS
+
+on:
+  push:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Baixar o código"
+        uses: actions/checkout@v4
+      - name: "Copiar arquivos para vps"
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: "85.209.92.241"
+          username: "root"
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "."
+          target: /var/www/vps
