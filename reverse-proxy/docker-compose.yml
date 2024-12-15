@@ -5,7 +5,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx/:/etc/nginx/conf.d/
+      - ./nginx:/etc/nginx/conf.d
     networks:
       - app-network
       - api-network
