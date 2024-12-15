@@ -7,7 +7,7 @@ services:
     volumes:
       - ./src:/var/www/html
     networks:
-      - app-network
+      - api-network
 
   nginx:
     image: nginx:alpine
@@ -18,8 +18,8 @@ services:
     depends_on:
       - app
     networks:
-      - app-network
+      - api-network
 
 networks:
-  app-network:
+  api-network:
     external: true
